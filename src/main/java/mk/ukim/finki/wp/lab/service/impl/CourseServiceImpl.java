@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -54,5 +55,17 @@ public class CourseServiceImpl implements CourseService {
         }
         return this.courseRepository.addStudentToCourse(student, course);
 
+    }
+
+    @Override
+    public void addCoursesToStudents() {
+        List<Student> students = this.studentRepository.findAllStudents();
+        students.forEach(student -> {
+            List<Course> foundCourses = this.courseRepository.isCourseListenedByStudent(student);
+            if (Objects.nonNull(foundCourses) && !foundCourses.isEmpty()) {
+                student.getCourseList().removeIf(foundCourses::contains);
+                student.getCourseList().addAll(foundCourses);
+            }
+        });
     }
 }

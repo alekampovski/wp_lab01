@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Show students</title>
+
+</head>
+<body>
+<header>
+    <h1>Courses that student attends </h1>
+</header>
+<section>
+    <th:block th:each="student: ${students}">
+    <div th:text=" 'Student name: ' + ${student.getFullName()}"></div>
+    <ul th:each="course : ${student.getCourseList()}">
+        <li><div th:text="${course.getName()}"> </div> </li>
+    </ul>
+    </th:block>
+    <a href="/listCourses">Back</a>
+</section>
+
+</body>
+</html>

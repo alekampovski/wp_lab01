@@ -12,5 +12,6 @@ public interface CourseService{
     Course findById(Long courseId);
     List<Student> listStudentsByCourse(Long courseId);
     Course addStudentInCourse(String username, Long courseId);
+    void addCoursesToStudents();
 }
 

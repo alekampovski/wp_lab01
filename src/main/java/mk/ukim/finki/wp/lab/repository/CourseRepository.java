@@ -4,10 +4,13 @@ import mk.ukim.finki.wp.lab.bootstrap.DataHolder;
 import mk.ukim.finki.wp.lab.model.exception.NoSuchCourseException;
 import mk.ukim.finki.wp.lab.model.Course;
 import mk.ukim.finki.wp.lab.model.Student;
+import mk.ukim.finki.wp.lab.model.exception.StudentNotContainedException;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Repository
 public class CourseRepository {
@@ -31,6 +34,14 @@ public class CourseRepository {
             return c.getStudents();
         }
         return null;
+    }
+
+    public List<Course> isCourseListenedByStudent(Student student) {
+        if (Objects.nonNull(student)) {
+            return DataHolder.courseList.stream()
+                    .filter(course -> course.getStudents().contains(student))
+                    .collect(Collectors.toList());
+        } return new ArrayList<>();
     }
 
     public Course addStudentToCourse(Student student, Course course) {
