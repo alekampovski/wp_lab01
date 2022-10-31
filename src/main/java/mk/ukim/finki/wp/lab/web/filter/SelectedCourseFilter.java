@@ -1,4 +1,4 @@
-package mk.ukim.finki.wp.lab.web.servlet.filter;
+package mk.ukim.finki.wp.lab.web.filter;
 
 import mk.ukim.finki.wp.lab.model.Course;
 import org.apache.logging.log4j.util.Strings;
