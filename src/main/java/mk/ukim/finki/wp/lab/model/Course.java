@@ -16,7 +16,12 @@ public class Course {
     private List<Student> students;
     private Teacher teacher;
 
+    public Course() {
+        this.courseId = Utils.generateRandomId();
+    }
+
     public Course(String name, String description, Teacher teacher) {
+        this.courseId = Utils.generateRandomId();
         this.name = name;
         this.description = description;
         this.students = new ArrayList<>();
