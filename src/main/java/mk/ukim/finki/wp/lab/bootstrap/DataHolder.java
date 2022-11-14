@@ -2,6 +2,7 @@ package mk.ukim.finki.wp.lab.bootstrap;
 
 import mk.ukim.finki.wp.lab.model.Course;
 import mk.ukim.finki.wp.lab.model.Student;
+import mk.ukim.finki.wp.lab.model.Teacher;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +13,7 @@ import java.util.List;
 public class DataHolder {
     public static List<Student> studentList = new ArrayList<>();
     public static List<Course> courseList = new ArrayList<>();
+    public static List<Teacher> teachers = new ArrayList<>();
 
     @PostConstruct
     public void init() {
@@ -24,10 +26,20 @@ public class DataHolder {
         List<Student> studentsListCourse01 = new ArrayList<>();
         studentsListCourse01.add(studentList.get(2));
         studentsListCourse01.add(studentList.get(3));
-        courseList.add(new Course(1L, "courseName01", "description01", studentsListCourse01));
-        courseList.add(new Course(2L, "courseName02", "description02", new ArrayList<>()));
-        courseList.add(new Course(3L, "courseName03", "description03", new ArrayList<>()));
-        courseList.add(new Course(4L, "courseName04", "description04", new ArrayList<>()));
-        courseList.add(new Course(5L, "courseName05", "description05", new ArrayList<>()));
+
+        //adding teachers
+
+        teachers.add(new Teacher("teacherName01", "teacherSurname01"));
+        teachers.add(new Teacher("teacherName02", "teacherSurname02"));
+        teachers.add(new Teacher("teacherName03", "teacherSurname03"));
+        teachers.add(new Teacher("teacherName04", "teacherSurname04"));
+        teachers.add(new Teacher("teacherName05", "teacherSurname05"));
+
+
+        courseList.add(new Course("courseName01", "description01", studentsListCourse01, teachers.get(0)));
+        courseList.add(new Course("courseName02", "description02", teachers.get(1)));
+        courseList.add(new Course("courseName03", "description03", teachers.get(2)));
+        courseList.add(new Course("courseName04", "description04", teachers.get(3)));
+        courseList.add(new Course("courseName05", "description05", teachers.get(4)));
     }
 }

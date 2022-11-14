@@ -27,7 +27,7 @@ public class SelectedCourseFilter implements Filter {
         String courseId = request.getParameter("courseId");
         Course course = (Course) request.getSession().getAttribute("course");
 
-        if(!"/listCourses".equals(path) && !("/AddStudent".equals(path) && Objects.nonNull(courseId)) && !"/showStudents".equals(path) && Objects.isNull(course)) {
+        if(!"/listCourses".equals(path) && !"/courses".equals(path) && !("/AddStudent".equals(path) && Objects.nonNull(courseId)) && !"/showStudents".equals(path) && Objects.isNull(course)) {
             response.sendRedirect("/listCourses");
         } else {
             filterChain.doFilter(servletRequest, servletResponse);

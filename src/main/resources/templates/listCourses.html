@@ -20,6 +20,8 @@
         <ul style="list-style-type: none">
             <li th:each="course : ${courses}">
                 <input type="radio" name="courseId" th:value="${course.getCourseId()}" th:text="${course.getName()}">
+                <p><b>Teacher: </b><i><th:block th:text="${course.getTeacher().getName()}"></th:block></i>
+                <hr>
             </li>
         </ul>
         <br/>

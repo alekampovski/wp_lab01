@@ -2,17 +2,34 @@ package mk.ukim.finki.wp.lab.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import mk.ukim.finki.wp.lab.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Data
-@AllArgsConstructor
 public class Course {
     private Long courseId;
     private String name;
     private String description;
     private List<Student> students;
+    private Teacher teacher;
+
+    public Course(String name, String description, Teacher teacher) {
+        this.name = name;
+        this.description = description;
+        this.students = new ArrayList<>();
+        this.teacher = teacher;
+    }
+
+    public Course(String name, String description, List<Student> students, Teacher teacher) {
+        this.courseId = Utils.generateRandomId();
+        this.name = name;
+        this.description = description;
+        this.students = students;
+        this.teacher = teacher;
+    }
 
     @Override
     public boolean equals(Object o) {
