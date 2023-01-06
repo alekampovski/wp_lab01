@@ -1,4 +1,4 @@
-package mk.ukim.finki.wp.lab.repository;
+package mk.ukim.finki.wp.lab.repository.inMemory;
 
 import mk.ukim.finki.wp.lab.bootstrap.DataHolder;
 import mk.ukim.finki.wp.lab.model.exception.NoSuchStudentException;
@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Repository
-public class StudentRepository {
+public class InMemoryStudentRepository {
 
     public List<Student> findAllStudents() {
         return DataHolder.studentList;
@@ -20,7 +20,7 @@ public class StudentRepository {
     public Student findStudentByUsername(String username) {
         return DataHolder.studentList.stream().filter(student -> student.getUsername().equals(username))
                 .findFirst()
-                .orElseThrow(() -> new NoSuchStudentException(String.format("Student with username %s does not exist!", username)));
+                .orElseThrow(() -> new NoSuchStudentException(username));
     }
 
     public List<Student> findAllByNameOrSurname(String text) {

@@ -38,7 +38,7 @@
 <section>
     <h2>Select the student to enroll:</h2>
     <a href='/createStudent' type='button'>Create New Student</a> <br/> <br/>
-    <form method="post" th:action="@{/StudentEnrollmentSummary}">
+    <form method="post" th:action="@{/student-enrollment-summary}">
         <th:block th:each="student : ${session.students}">
             <input type="radio" name="username" th:value="${student.getUsername()}"
                    th:text="${student.getFullName()}"><br/>

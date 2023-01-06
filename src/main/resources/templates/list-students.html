@@ -19,8 +19,14 @@
             display: inline-block;
         }
 
-        .addBtn {
-            margin-bottom: 5px;
+        .selectedCourse {
+            margin-top: 10px;
+            background: whitesmoke;
+            width: 900px;
+        }
+
+        .selectedCourse h2 {
+            padding: 10px;
         }
     </style>
 </head>
@@ -36,6 +42,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{'/courses'}">Show courses</a>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{'/teachers'}">Show teachers</a>
                 </li>
@@ -46,40 +53,43 @@
         </div>
     </nav>
 </header>
+<!--TODO: beautify selected course div-->
 <div class="container">
-    <header>
-        <h1>Choose course:</h1>
-    </header>
+    <div class="selectedCourse">
+        <h2 class="d-flex justify-content-sm-center border border-primary rounded">
+            Selected course: <b th:text="${course.getName()}"></b>
+        </h2>
+    </div>
     <main>
-        <a th:href="@{/courses/add-form}" type="button" class="addBtn btn btn-sm btn-primary">Add course</a>
+        <label>Enrolled students: </label>
         <table class="table table-bordered">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">Id</th>
                 <th scope="col">Name</th>
-                <th scope="col">Teacher</th>
-                <th scope="col">Type</th>
-                <th scope="col">Action</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Username</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="course: ${courses}">
-                <td th:text="${course.getCourseId()}"></td>
-                <td th:text="${course.getName()}"></td>
-                <td th:text="${course.getTeacher().getName()}"></td>
-                <td th:text="${course.getType()}"></td>
-                <td>
-                    <a class="btn btn-info btn-sm"
-                       th:href="@{'/courses/{id}/student-enrollment-summary' (id=${course.getCourseId()})}">Select</a>
-                    <a class="btn btn-success btn-sm"
-                       th:href="@{'/courses/edit-form/{id}' (id=${course.getCourseId()})}"><i>Edit</i></a>
-                    <form th:method="delete" th:action="@{'/courses/delete/{id}' (id=${course.getCourseId()})}">
-                        <button class="btn btn-danger btn-sm" type="submit"><i>Delete</i></button>
-                    </form>
-                </td>
+            <tr th:each="student: ${course.getStudents()}">
+                <td th:text="${student.getName()}"></td>
+                <td th:text="${student.getSurname()}"></td>
+                <td th:text="${student.getUsername()}"></td>
             </tr>
             </tbody>
         </table>
+        <!--TODO: Remove dropdown from here - create separate page for it :) -->
+        <label>Select student to enroll: </label>
+        <form method="post" th:action="@{/courses/{id}/add-student(id=${course.getCourseId()})}">
+        <div class="form-group">
+            <select name="username" class="form-control">
+                <option th:each="st : ${allStudents}"
+                th:text="${st.getFullName()}"
+                th:value="${st.getUsername()}"></option>
+            </select>
+        </div>
+            <input type="submit" value="Submit">
+        </form>
     </main>
 </div>
 </body>

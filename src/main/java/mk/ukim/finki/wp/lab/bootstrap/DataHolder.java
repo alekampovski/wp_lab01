@@ -29,17 +29,17 @@ public class DataHolder {
 
         //adding teachers
 
-        teachers.add(new Teacher("teacherName01", "teacherSurname01"));
-        teachers.add(new Teacher("teacherName02", "teacherSurname02"));
-        teachers.add(new Teacher("teacherName03", "teacherSurname03"));
-        teachers.add(new Teacher("teacherName04", "teacherSurname04"));
-        teachers.add(new Teacher("teacherName05", "teacherSurname05"));
+//        teachers.add(new Teacher("teacherName01", "teacherSurname01"));
+//        teachers.add(new Teacher("teacherName02", "teacherSurname02"));
+//        teachers.add(new Teacher("teacherName03", "teacherSurname03"));
+//        teachers.add(new Teacher("teacherName04", "teacherSurname04"));
+//        teachers.add(new Teacher("teacherName05", "teacherSurname05"));
 
 
-        courseList.add(new Course("courseName01", "description01", studentsListCourse01, teachers.get(0)));
-        courseList.add(new Course("courseName02", "description02", teachers.get(1)));
-        courseList.add(new Course("courseName03", "description03", teachers.get(2)));
-        courseList.add(new Course("courseName04", "description04", teachers.get(3)));
-        courseList.add(new Course("courseName05", "description05", teachers.get(4)));
+//        courseList.add(new Course("courseName01", "description01", studentsListCourse01, teachers.get(0)));
+//        courseList.add(new Course("courseName02", "description02", teachers.get(1)));
+//        courseList.add(new Course("courseName03", "description03", teachers.get(2)));
+//        courseList.add(new Course("courseName04", "description04", teachers.get(3)));
+//        courseList.add(new Course("courseName05", "description05", teachers.get(4)));
     }
 }

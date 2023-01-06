@@ -1,9 +1,10 @@
-package mk.ukim.finki.wp.lab.repository;
+package mk.ukim.finki.wp.lab.repository.inMemory;
 
 import mk.ukim.finki.wp.lab.bootstrap.DataHolder;
 import mk.ukim.finki.wp.lab.model.Course;
 import mk.ukim.finki.wp.lab.model.Student;
 import mk.ukim.finki.wp.lab.model.Teacher;
+import mk.ukim.finki.wp.lab.model.enumeration.Type;
 import mk.ukim.finki.wp.lab.model.exception.NoSuchCourseException;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
-public class CourseRepository {
+public class InMemoryCourseRepository {
     List<Course> findAllCourses() {
         return DataHolder.courseList;
     }
@@ -25,7 +26,7 @@ public class CourseRepository {
             return DataHolder.courseList.stream()
                     .filter(course -> course.getCourseId().equals(courseId))
                     .findFirst()
-                    .orElseThrow(() -> new NoSuchCourseException(String.format("Course with Id %s does not exist!", courseId)));
+                    .orElseThrow(() -> new NoSuchCourseException(courseId));
         }
         return null;
     }
@@ -58,9 +59,9 @@ public class CourseRepository {
         return DataHolder.courseList;
     }
 
-    public Optional<Course> save(String name, String description, Teacher teacher) {
+    public Optional<Course> save(String name, String description, Teacher teacher, Type type) {
         DataHolder.courseList.removeIf(course -> course.getName().equals(name));
-        Course course = new Course(name, description, teacher);
+        Course course = new Course(name, description, teacher, type);
         DataHolder.courseList.add(course);
         return Optional.of(course);
     }

@@ -2,6 +2,7 @@ package mk.ukim.finki.wp.lab.web.servlet;
 
 import mk.ukim.finki.wp.lab.model.Course;
 import mk.ukim.finki.wp.lab.service.CourseService;
+import org.springframework.context.annotation.Profile;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Profile("servlets")
 @WebServlet(name = "student-enrollment-summary", urlPatterns = "/StudentEnrollmentSummary")
 public class StudentEnrollmentSummary extends HttpServlet {
 

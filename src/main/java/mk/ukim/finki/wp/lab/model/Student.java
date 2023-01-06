@@ -1,26 +1,30 @@
 package mk.ukim.finki.wp.lab.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
+@NoArgsConstructor
 @Data
 public class Student {
+    @Id
     private String username;
     private String password;
     private String name;
     private String surname;
-    List<Course> courseList;
+
+    //List<Course> courseList;
 
     public Student(String username, String password, String name, String surname) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.courseList = new ArrayList<>();
+        //this.courseList = new ArrayList<>();
     }
 
     public String getFullName() {

@@ -1,13 +1,14 @@
 package mk.ukim.finki.wp.lab.service.impl;
 
-import mk.ukim.finki.wp.lab.model.exception.InvalidArgumentsException;
 import mk.ukim.finki.wp.lab.model.Student;
-import mk.ukim.finki.wp.lab.repository.StudentRepository;
+import mk.ukim.finki.wp.lab.model.exception.InvalidArgumentsException;
+import mk.ukim.finki.wp.lab.repository.jpa.StudentRepository;
 import mk.ukim.finki.wp.lab.service.StudentService;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -20,7 +21,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> listAll() {
-        return studentRepository.findAllStudents();
+        return studentRepository.findAll();
     }
 
     @Override
@@ -39,5 +40,12 @@ public class StudentServiceImpl implements StudentService {
         }
         Student student = new Student(username, password, name, surname);
         return studentRepository.save(student);
+    }
+
+    @Override
+    public Optional<Student> findByUsername(String username) {
+        if (Strings.isEmpty(username))
+            throw new IllegalArgumentException();
+        return studentRepository.findById(username);
     }
 }

@@ -36,6 +36,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{'/courses'}">Show courses</a>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{'/teachers'}">Show teachers</a>
                 </li>
@@ -48,38 +49,41 @@
 </header>
 <div class="container">
     <header>
-        <h1>Choose course:</h1>
+        <h1>Teachers list</h1>
     </header>
     <main>
-        <a th:href="@{/courses/add-form}" type="button" class="addBtn btn btn-sm btn-primary">Add course</a>
+        <a th:href="@{/teachers/add-form}" type="button" class="addBtn btn btn-sm btn-primary">Add teacher</a>
         <table class="table table-bordered">
             <thead class="thead-dark">
             <tr>
+                <th></th>
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
-                <th scope="col">Teacher</th>
-                <th scope="col">Type</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Date of Employment</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="course: ${courses}">
-                <td th:text="${course.getCourseId()}"></td>
-                <td th:text="${course.getName()}"></td>
-                <td th:text="${course.getTeacher().getName()}"></td>
-                <td th:text="${course.getType()}"></td>
+            <tr th:each="teacher: ${teachers}">
+                <td><input type="radio"></td>
+                <td th:text="${teacher.getId()}"></td>
+                <td th:text="${teacher.getName()}"></td>
+                <td th:text="${teacher.getSurname()}"></td>
+                <td th:text="${teacher.getDateOfEmployment()}"></td>
                 <td>
-                    <a class="btn btn-info btn-sm"
-                       th:href="@{'/courses/{id}/student-enrollment-summary' (id=${course.getCourseId()})}">Select</a>
                     <a class="btn btn-success btn-sm"
-                       th:href="@{'/courses/edit-form/{id}' (id=${course.getCourseId()})}"><i>Edit</i></a>
-                    <form th:method="delete" th:action="@{'/courses/delete/{id}' (id=${course.getCourseId()})}">
-                        <button class="btn btn-danger btn-sm" type="submit"><i>Delete</i></button>
-                    </form>
+                       th:href="@{'/teachers/edit-form/{id}' (id=${teacher.getId()})}"><i>Edit</i></a>
+                    <!--                    <form th:method="delete" th:action="@{'/teachers/delete/{id}' (id=${teacher.getId()})}">-->
+                    <!--                        <button class="btn btn-danger btn-sm" type="submit"><i>Delete</i></button>-->
+                    <!--                    </form>-->
                 </td>
             </tr>
             </tbody>
         </table>
+        <br/>
+        <br>
+        <a></a>
     </main>
 </div>
 </body>
